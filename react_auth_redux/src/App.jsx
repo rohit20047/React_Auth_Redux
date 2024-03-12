@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { login } from "./redux/authSlice";
+//import { SignUp } from "./component";
+import { useDispatch , useSelector } from "react-redux";
+import { SignUp } from "./component";
+import { Login } from "./component";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+ import  PrivateRoutes  from "./PrivateRoutes";
 
+
+import Room from "./Room"
 function App() {
-  const [count, setCount] = useState(0)
-
+  
+  // const dispatch = useDispatch();
+  // const user = useSelector((state) => state.auth.user);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+  {/* <button onClick = {() => dispatch( login("hello") )}>Login</button>
+  {user} */}
+
+    <Router>
+      <Routes>
+        <Route path = "/" element = {<Login/>} />
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route element={<PrivateRoutes />}>
+              <Route path="/room" element={<Room/>}/>
+        </Route>
+      </Routes>
+    </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
