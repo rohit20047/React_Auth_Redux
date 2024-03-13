@@ -11,7 +11,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
  import  PrivateRoutes  from "./PrivateRoutes";
 
 
-import Room from "./Room"
+import Room from "./pages/Room"
+import LoginPage from "./pages/LoginPage";
+import SignInPage from "./pages/SignInPage";
 function App() {
   
   // const dispatch = useDispatch();
@@ -23,8 +25,8 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path = "/" element = {<Login/>} />
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path = "/" element = {<LoginPage/>} />
+        <Route path="/signup" element={<SignInPage/>}/>
         <Route element={<PrivateRoutes />}>
               <Route path="/room" element={<Room/>}/>
         </Route>
